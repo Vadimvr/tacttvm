@@ -2,49 +2,27 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using Serilog;
+using System;
 using System.Linq;
 using tacttvm.ViewModels;
 using tacttvm.Views;
 
 namespace tacttvm
 {
-    public partial class App : Application
+    public partial class App : Application, IDisposable
     {
+        public static IClassicDesktopStyleApplicationLifetime? RefMainWindow { get; private set; }
+       
+        public static  MainWindowViewModel? mainWindowViewModel { get; private set; }
 
-        private ContextMenu _NotifyIconContextMenu = null;
-        // public LocalizationExtension Localization { get; }
-        private MainWindow _mainWindow = null;
+        public static App? app; 
 
-        public static Window? ActivedWindow()
-        {
-            if (Current != null && (Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop))
-            {
-                return desktop.Windows.Cast<Window>().FirstOrDefault(w => w.IsActive);
-            }
+        //   public static MainWindow RefMainWindow { get; private set; }
 
-            return null;
-        }
-
-        public static Window? FocusedWindow()
-        {
-            if (Current != null && (Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop))
-            {
-                return desktop.Windows.Cast<Window>().FirstOrDefault(w => w.IsFocused);
-            }
-
-            return null;
-        }
         public override void Initialize()
         {
+            app = this;
             AvaloniaXamlLoader.Load(this);
-
-            this._mainWindow = new MainWindow
-            {
-                DataContext = new MainWindowViewModel(),
-            };
-
-            Log.Information("App initialization completed!");
         }
 
 
@@ -52,18 +30,39 @@ namespace tacttvm
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                }
-                //_quickPassManager = QuickPassManager.Instance;
-                            //desktop.MainWindow = _mainWindow;
-                base.OnFrameworkInitializationCompleted();
+                mainWindowViewModel = new MainWindowViewModel();
+                desktop.MainWindow = new MainWindow
+                {
+                    DataContext = mainWindowViewModel,
+                };
+                mainWindowViewModel.Desktop = desktop;
+                desktop.MainWindow.Closing += (s, e) =>
+                {
+                    if (s != null)
+                    {
+                        ((Window)s).Hide();
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        throw new ArgumentNullException();
+                    }
+                };
+                RefMainWindow = desktop;
+               
             }
+            base.OnFrameworkInitializationCompleted();
         }
 
+       static public void DisposeStatic()
+        {
+            app?.Dispose();
+        }
 
-        /// <summary>
-        /// Restores the app's main window by setting its <c>WindowState</c> to
-        /// <c>WindowState.Normal</c> and showing the window.
-        /// </summary>
+        public void Dispose()
+        {
+           GC.SuppressFinalize(this);
+        }
+    }
 
-    
 }

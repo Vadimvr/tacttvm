@@ -11,6 +11,11 @@ namespace testTryi.Views
         public MainWindow()
         {
             InitializeComponent();
+            //Hide();
+        }
+        public  void End()
+        {
+            
         }
     }
 }

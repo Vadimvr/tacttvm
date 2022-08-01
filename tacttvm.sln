@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tacttvm", "tacttvm\tacttvm.csproj", "{EEA79913-BD0B-491C-819F-901E319E338F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testTryi", "testTryi\testTryi.csproj", "{638C8A6F-9195-425E-9541-9E196C925B4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "testTryi", "testTryi\testTryi.csproj", "{638C8A6F-9195-425E-9541-9E196C925B4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

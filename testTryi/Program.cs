@@ -5,6 +5,7 @@ using Avalonia.ReactiveUI;
 using Avalonia.Threading;
 using NotificationIconSharp;
 using System;
+using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
 using testTryi.ViewModels;
@@ -17,7 +18,8 @@ namespace testTryi
         // Initialization code. Don't use any Avalonia, third-party APIs or any
         // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
         // yet and stuff might break.
-
+        static CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+        static bool show = false;
 
         // Avalonia configuration, don't remove; also used by visual designer.
         public static AppBuilder BuildAvaloniaApp()
@@ -26,29 +28,22 @@ namespace testTryi
                 .LogToTrace()
                 .UseReactiveUI();
 
-        const string icon_path = @"D:\test\1.ico";
+        const string icon_path = @"Assets/1.ico";
 
         static bool destroy = false;
-        private static Task task;
-        public static Action hide;
-
-        public static string[] Args { get; set; }
-       
-        static void AppMain(Application app, string[] args)
-        {
-            // A cancellation token source that will be used to stop the main loop
-            var cts = new CancellationTokenSource();
-
-            // Do you startup code here
-            new Window().Show();
-
-            // Start the main loop
-            app.Run(cts.Token);
-        }
+        private static Task? task;
 
         static void Main(string[] args)
         {
-            Args = args;
+            CancellationToken token = cancelTokenSource.Token;
+            task = new Task(() =>
+            {
+                BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+            }, token);
+            task.Start();
+
+
+
 
             NotificationManager.Initialize("com.app.test", icon_path, icon_path);
             // NotificationManager.SendNotification("My New Notification", "Isn't This Handy", "ActionId", icon_path);
@@ -57,23 +52,33 @@ namespace testTryi
             var trayIcon = new NotificationIcon(icon_path);
             TrayIcon_NotificationIconSelected(trayIcon);
             //trayIcon.NotificationIconSelected += TrayIcon_NotificationIconSelected;
-            task = new Task(() =>
+            do
             {
-                BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
-            });
-            task.Start();
+                if (App.RefMainWindow != null)
+                {
+                    Dispatcher.UIThread.InvokeAsync(App.RefMainWindow.MainWindow.Hide);
+                    App.RefMainWindow.MainWindow.Closing += Closing;
+                    break;
+                }
+            } while (true);
+
             while (true)
             {
                 trayIcon?.DoMessageLoop(true);
 
                 if (destroy)
                 {
-                    
                     trayIcon?.Dispose();
                     trayIcon = null;
                     break;
                 }
             }
+        }
+
+        static public void Closing(object? w, CancelEventArgs e)
+        {
+            Dispatcher.UIThread.InvokeAsync(() => ((Window?)w)?.Hide());
+            e.Cancel = true;
         }
 
         private static void NotificationManager_NotificationIconSelectedEvent(string notificationId)
@@ -86,66 +91,68 @@ namespace testTryi
             if (icon.MenuItems.Count > 0) return;
 
 
-            var hideMainWindow = new NotificationMenuItem("hide");
-            hideMainWindow.NotificationMenuItemSelected += HideMainWindow_NotificationMenuItemSelected;
+            //var hideMainWindow = new NotificationMenuItem("hide");
+            //hideMainWindow.NotificationMenuItemSelected += HideMainWindow_NotificationMenuItemSelected;
 
-            var showMainWindow = new NotificationMenuItem("Open");
+            var showMainWindow = new NotificationMenuItem("Show");
             showMainWindow.NotificationMenuItemSelected += ShowMainWindow_NotificationMenuItemSelected;
 
-            var disableMenuItem = new NotificationMenuItem("exit");
-            disableMenuItem.NotificationMenuItemSelected += Exit_NotificationMenuItemSelected;
 
             var setTextMenuItem = new NotificationMenuItem("Help");
             setTextMenuItem.NotificationMenuItemSelected += Help_NotificationMenuItemSelected;
 
-          
-            icon.AddMenuItem(hideMainWindow);
+            var disableMenuItem = new NotificationMenuItem("Exit");
+            disableMenuItem.NotificationMenuItemSelected += Exit_NotificationMenuItemSelected;
+
+
+            //icon.AddMenuItem(hideMainWindow);
             icon.AddMenuItem(showMainWindow);
             icon.AddMenuItem(disableMenuItem);
             icon.AddMenuItem(setTextMenuItem);
         }
 
-        private static void CheckMenuItem_NotificationMenuItemSelected(NotificationMenuItem menuItem)
-        {
-            Dispatcher.UIThread.InvokeAsync(App.RefMainWindow.MainWindow.Hide);
- 
-        }
         public static void HideMainWindow_NotificationMenuItemSelected(NotificationMenuItem menuItem)
         {
-            Dispatcher.UIThread.InvokeAsync(App.RefMainWindow.MainWindow.Hide);
-
+            if (App.RefMainWindow != null)
+                Dispatcher.UIThread.InvokeAsync(App.RefMainWindow.MainWindow.Hide);
         }
+
         public static void ShowMainWindow_NotificationMenuItemSelected(NotificationMenuItem menuItem)
         {
-            Dispatcher.UIThread.InvokeAsync(App.RefMainWindow.MainWindow.Show);
-
+            if (App.RefMainWindow != null)
+            {
+                if (show)
+                {
+                    Dispatcher.UIThread.InvokeAsync(App.RefMainWindow.MainWindow.Hide);
+                    menuItem.Text = "Show";
+                }
+                else
+                {
+                    Dispatcher.UIThread.InvokeAsync(App.RefMainWindow.MainWindow.Show);
+                    menuItem.Text = "Hide";
+                }
+                show = !show;
+            }
         }
 
         private static void Exit_NotificationMenuItemSelected(NotificationMenuItem menuItem)
         {
-            destroy = true;
+            if (App.RefMainWindow != null)
+            {
+                App.RefMainWindow.MainWindow.Closing -= Closing;
+                Dispatcher.UIThread.InvokeAsync(() => { App.RefMainWindow.Shutdown(); });
+                destroy = true;
+            }
         }
 
         private static void Help_NotificationMenuItemSelected(NotificationMenuItem menuItem)
         {
-            menuItem.Text = "Hello World!";
-        }
-
-        private static void SubMenuMenuItem_NotificationMenuItemSelected(NotificationMenuItem menuItem)
-        {
-            if (menuItem.MenuItems.Count > 0) return;
-
-            var destroyMenuItem = new NotificationMenuItem("Destroy Menu");
-            destroyMenuItem.NotificationMenuItemSelected += DestroyMenuItem_NotificationMenuItemSelected;
-            menuItem.AddMenuItem(destroyMenuItem);
-        }
-
-        private static void DestroyMenuItem_NotificationMenuItemSelected(NotificationMenuItem icon)
-        {
-            
-            destroy = true;
+            Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                var messageBoxStandardWindow = MessageBox.Avalonia.MessageBoxManager
+                .GetMessageBoxStandardWindow("Code", "https://github.com/Vadimvr/tacttvm");
+                messageBoxStandardWindow.Show();
+            });
         }
     }
-
-
 }

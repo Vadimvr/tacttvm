@@ -3,20 +3,64 @@
         xmlns:vm="using:tacttvm.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="200"
-		MaxWidth="300" MaxHeight="300"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="450"
+		MaxHeight="450"
+		MaxWidth ="570"
         x:Class="tacttvm.Views.MainWindow"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="/Assets/translator-logo.ico"
         Title="tacttvm">
 	<Window.Styles>
-		<StyleInclude Source="/Styles/Button.xaml"/>
+		<StyleInclude Source="/Styles/All.xaml"/>
+		<StyleInclude Source="/Styles/TextBlock.xaml"/>
 	</Window.Styles>
 
 	<Design.DataContext>
 		<vm:MainWindowViewModel/>
 	</Design.DataContext>
 	<StackPanel>
-		<Label Classes="FieldReview">Сочетание клавиш:</Label>
-		<TextBox Classes="KeyCombination" Text="{Binding KeyCombination}"></TextBox>
+		<Grid
+			ColumnDefinitions="Auto,Auto,Auto,Auto,4*"
+			RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+			Margin="4">
+			<TextBlock Grid.Row="0" Grid.Column="0" Classes="FieldReview">Alt</TextBlock>
+			<CheckBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"	IsChecked="{Binding Alt}"></CheckBox>
+
+			<TextBlock  Grid.Row="1" Grid.Column="0" Classes="FieldReview">Ctrl</TextBlock>
+			<CheckBox  Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" IsChecked="{Binding Ctrl}"></CheckBox>
+			<TextBlock Grid.Row="1" Grid.Column="2" Classes="FieldReview">+ </TextBlock>
+			<TextBox Grid.Row="1" Grid.Column="3" Classes="KeyCombination" Text="{Binding KeyChar}"></TextBox>
+
+			<TextBox Grid.Row="1" Grid.Column="4" Classes="KeyCombination" Text="{Binding KeyNumber}"></TextBox>
+
+
+			<TextBlock Grid.Row="2" Grid.Column="0" Classes="FieldReview">Shift</TextBlock>
+			<CheckBox  Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" IsChecked="{Binding Shift}"></CheckBox>
+
+			<TextBlock Grid.Row="3"  Grid.Column="0" Classes="FieldReview" >CamelCase</TextBlock>
+			<CheckBox  Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" IsChecked="{Binding CamelCase}"></CheckBox>
+
+			<TextBlock Grid.Row="4"  Grid.Column="0" Classes="FieldReview" Text="{Binding Snake_Case}"></TextBlock>
+			<CheckBox  Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" IsChecked="{Binding SnakeCase}"></CheckBox>
+
+
+			<TextBlock Grid.Row="5" Grid.Column="0"  Classes="FieldReview">Current language</TextBlock>
+			<TextBox Grid.Row="5" Grid.Column="1" Classes="KeyCombination KeyCombination2" Text="{Binding CurrentLanguage}"></TextBox>
+
+			<TextBlock Grid.Row="6" Grid.Column="0" Classes="FieldReview">Language translation</TextBlock>
+			<TextBox Grid.Row="6" Grid.Column="1" Classes="KeyCombination KeyCombination2" Text="{Binding LanguageTranslation}"></TextBox>
+
+			<TextBlock Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4" Classes="FieldReview FieldReview">ApiKey From https://mymemory.translated.net/</TextBlock>
+			<TextBox Grid.Row="8" Grid.Column="0" Classes="KeyCombination ApiKeyCombination" Text="{Binding ApiKey}">9e8a40f3090105ea3486</TextBox>
+			
+			<Button Grid.Row="9" Grid.Column="2" Command="{Binding UpdateSettingCommand}"> Apply </Button>
+
+		</Grid>
+		<ScrollViewer>
+			<TextBox Text="{Binding StatsBar}" MaxHeight="200"
+					 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+					 ScrollViewer.VerticalScrollBarVisibility="Visible"
+					 ></TextBox>
+		</ScrollViewer>
+		
 	</StackPanel>
 </Window>

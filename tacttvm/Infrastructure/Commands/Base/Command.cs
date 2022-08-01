@@ -1,4 +1,5 @@
-﻿using System;
+﻿#pragma warning disable CS8618, CS8612,CS0067, CS8769
+using System;
 using System.Windows.Input;
 
 namespace tacttvm.Infrastructure.Commands.Base
@@ -19,8 +20,7 @@ namespace tacttvm.Infrastructure.Commands.Base
         }
 
         public event EventHandler ExecutableChanged;
-        public event EventHandler? CanExecuteChanged;
-
+        public event EventHandler CanExecuteChanged;
         //event EventHandler ICommand.CanExecuteChanged
         //{
         //    add => CommandManager.RequerySuggested += value;
@@ -40,3 +40,4 @@ namespace tacttvm.Infrastructure.Commands.Base
         protected abstract void Execute(object p);
     }
 }
+#pragma warning restore CS8618, CS8612 ,CS0067 ,CS8769

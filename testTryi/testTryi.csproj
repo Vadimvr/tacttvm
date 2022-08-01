@@ -10,9 +10,15 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <AvaloniaResource Include="Assets\**" />
+    <AvaloniaResource Remove="Assets\1.ico" />
     <None Remove=".gitignore" />
     <None Remove="Assets\1.ico" />
     <None Remove="Assets\2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\1.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <!--This helps with theme dll-s trimming.
@@ -22,11 +28,13 @@
     <TrimmableAssembly Include="Avalonia.Themes.Default" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.10.14" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.10.14" />
+    <PackageReference Include="Avalonia" Version="0.10.17" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.17" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.14" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.14" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.17" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.17" />
+    <PackageReference Include="MessageBox.Avalonia" Version="2.0.2" />
+    <PackageReference Include="MessageBox.Avalonia-mainthread" Version="2.0.1" />
     <PackageReference Include="NotificationIconSharp" Version="1.0.1" />
     <PackageReference Include="XamlNameReferenceGenerator" Version="1.3.4" />
   </ItemGroup>
