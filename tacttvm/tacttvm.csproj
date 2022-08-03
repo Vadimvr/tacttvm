@@ -10,20 +10,28 @@
 	<ItemGroup>
 		<AvaloniaResource Include="Assets\**" />
 		<AvaloniaResource Include="Styles\**" />
-		<AvaloniaResource Remove="Assets\translator.ico" />
+		<AvaloniaResource Remove="Assets\tacttvm_osx_icon.png" />
+		<AvaloniaResource Remove="Assets\tacttvm_win_icon.ico" />
+		<Compile Remove="Assets\AppSettings.cs" />
 		<None Remove=".gitignore" />
-		<None Remove="Assets\translator-logo.ico" />
-		<None Remove="Assets\translator.ico" />
+		<None Remove="Assets\IconInTheTaskbar_icon_normal_256_32_icon.ico" />
+		<None Remove="Assets\tacttvm-Logo.ico" />
+		<None Remove="Assets\tacttvm_osx_icon.png" />
+		<None Remove="Assets\tacttvm_win_icon.ico" />
 		<None Remove="C:\Users\rvadi\.nuget\packages\dein.toolbox\1.10.0\contentFiles\any\any\cmd.bat" />
 		<None Remove="C:\Users\rvadi\.nuget\packages\dein.toolbox\1.10.0\contentFiles\any\any\cmd.sh" />
 		<None Remove="Styles\All.xaml" />
 		<None Remove="Styles\TextBlock.xaml" />
 	</ItemGroup>
 	<ItemGroup>
+	  <AvaloniaResource Include="Models\AppSettings.cs" />
+	</ItemGroup>
+	<ItemGroup>
 	  <AvaloniaXaml Include="Styles\All.xaml" />
 	</ItemGroup>
 	<ItemGroup>
-	  <EmbeddedResource Include="Assets\translator.ico">
+	  <EmbeddedResource Include="Assets\tacttvm_osx_icon.png" />
+	  <EmbeddedResource Include="Assets\tacttvm_win_icon.ico">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </EmbeddedResource>
 	</ItemGroup>
@@ -46,10 +54,15 @@
 		<PackageReference Include="SharpHook" Version="3.0.2" />
 		<PackageReference Include="SharpHook.Reactive" Version="3.0.2" />
 		<PackageReference Include="TextCopy" Version="6.1.0" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+		<PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
 		<PackageReference Include="XamlNameReferenceGenerator" Version="1.3.4" />
 	</ItemGroup>
 	<ItemGroup>
-		<AvaloniaResource Update="Assets\translator-logo.ico">
+	  <ProjectReference Include="..\IconInTheTaskbar\IconInTheTaskbar.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<AvaloniaResource Update="Assets\IconInTheTaskbar_icon_normal_256_32_icon.ico">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</AvaloniaResource>
 		<AvaloniaResource Update="Styles\TextBlock.xaml">

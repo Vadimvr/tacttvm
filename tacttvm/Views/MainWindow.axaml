@@ -7,7 +7,7 @@
 		MaxHeight="450"
 		MaxWidth ="570"
         x:Class="tacttvm.Views.MainWindow"
-        Icon="/Assets/translator-logo.ico"
+        Icon="/Assets/tacttvm-Logo.ico"
         Title="tacttvm">
 	<Window.Styles>
 		<StyleInclude Source="/Styles/All.xaml"/>

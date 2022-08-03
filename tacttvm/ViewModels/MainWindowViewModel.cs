@@ -28,11 +28,11 @@ namespace tacttvm.ViewModels
             AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
         }
 
-        private void Closed(object? o, EventArgs e)
+        public void Closed(object? o, EventArgs e)
         {
             ReplacingSelectedTextService?.UnsubscribeToReceiveButtonNumber();
         }
-        private void Open(object? o, EventArgs e)
+        public void Open(object? o, EventArgs e)
         {
             ReplacingSelectedTextService?.SubscribeToReceiveButtonNumber();
         }
