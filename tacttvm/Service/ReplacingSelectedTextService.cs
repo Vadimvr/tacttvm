@@ -48,7 +48,7 @@ namespace tacttvm.Service
 
         internal void Exit()
         {
-            throw new NotImplementedException();
+            this.hook.Dispose();
         }
 
         public Action<ushort> SetKeyNumber { get; }
