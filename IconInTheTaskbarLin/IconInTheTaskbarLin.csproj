@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<CodeAnalysisRuleSet>code-analysis.ruleset</CodeAnalysisRuleSet>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="Assets\IconInTheTaskbar_icon.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Assets\IconInTheTaskbar_icon.ico" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Avalonia" Version="0.10.17" />
+		<PackageReference Include="Eto.Forms" Version="2.7.0" />
+		<PackageReference Include="Eto.Platform.Gtk" Version="2.7.0" />
+		<PackageReference Include="Serilog" Version="2.11.0" />
+	</ItemGroup>
+</Project>
