@@ -21,13 +21,13 @@ namespace tacttvm
             // Set up logging
             SetUpLogging();
             Log.Information("");
-            Log.Information("load from -> Assembly.LoadFrom AvaloniaApplication1");
+            Log.Information("load from -> Assembly.LoadFrom tacttvm");
             Assembly[] assembles = AppDomain.CurrentDomain.GetAssemblies();
             Assembly? assembly = null;
             foreach (var names in assembles)
             {
                 string? x = names.FullName;
-                if (!string.IsNullOrWhiteSpace(x) && (x.Contains("AvaloniaApplication1")))
+                if (!string.IsNullOrWhiteSpace(x) && (x.Contains("tacttvm")))
                 {
                     assembly = names;
                 }
