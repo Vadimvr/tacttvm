@@ -28,6 +28,7 @@ namespace IconInTheTaskbar.Platform
                     return typeof(OSX.NotifyIcon);
                 else return null;
             }
+            
 
             if (typeof(T) == typeof(ISystemEventNotifier))
             {
