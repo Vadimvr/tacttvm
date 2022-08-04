@@ -3,7 +3,6 @@ using Avalonia.Controls.ApplicationLifetimes;
 using IconInTheTaskbar.Models;
 using IconInTheTaskbar.Models.IPC;
 using IconInTheTaskbar.Platform;
-using MonoMac.AppKit;
 using System.ComponentModel;
 using System.Net.Sockets;
 using System.Reflection;
@@ -36,17 +35,7 @@ namespace IconInTheTaskbar
                 LogInformation?.Invoke("NotifyIconParameters is null");
                 throw new ArgumentNullException(nameof(NotifyIconParameters));
             }
-
-
-            // If this is running on a Mac we need a special event handler for URL schema invokation
-            // This also handles System Events and notifications, it gives us a native foothold on a Mac.
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-                LogInformation?.Invoke("Initialializing App Delegate for macOS");
-                NSApplication.Init();
-                NSApplication.SharedApplication.Delegate = new IconInTheTaskbar.Platform.OSX.AppDelegate();
-            }
-
+         
             // Set up and configure the notification icon
             // Get the type of the platform-specific implementation
             Type type = Implementation.ForType<INotifyIcon>();
