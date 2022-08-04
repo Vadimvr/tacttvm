@@ -6,6 +6,7 @@
 		<!--Avalonia doesen't support TrimMode=link currently,but we are working on that https://github.com/AvaloniaUI/Avalonia/issues/6892 -->
 		<TrimMode>copyused</TrimMode>
 		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+		<ApplicationIcon>Assets\tacttvm_win_icon.ico</ApplicationIcon>
 	</PropertyGroup>
 	<ItemGroup>
 		<AvaloniaResource Include="Assets\**" />
@@ -28,6 +29,9 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <AvaloniaXaml Include="Styles\All.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Include="Assets\tacttvm_win_icon.ico" />
 	</ItemGroup>
 	<ItemGroup>
 	  <EmbeddedResource Include="Assets\tacttvm_osx_icon.png" />
