@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tacttvm", "tacttvm\tacttvm.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IconInTheTaskbar", "IconInTheTaskbar\IconInTheTaskbar.csproj", "{47553F13-33C3-455F-A5C4-51E41B864C9C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IconInTheTaskbarWindows", "IconInTheTaskbarWindows\IconInTheTaskbarWindows.csproj", "{2A90D385-224B-4424-B8D6-A15700E85D62}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{47553F13-33C3-455F-A5C4-51E41B864C9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47553F13-33C3-455F-A5C4-51E41B864C9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47553F13-33C3-455F-A5C4-51E41B864C9C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2A90D385-224B-4424-B8D6-A15700E85D62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A90D385-224B-4424-B8D6-A15700E85D62}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A90D385-224B-4424-B8D6-A15700E85D62}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2A90D385-224B-4424-B8D6-A15700E85D62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
