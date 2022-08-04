@@ -138,7 +138,7 @@ namespace tacttvm
             {
                 if (AppSettings.Instance.StartMinimized)
                 {
-                    window.Hide();
+                    window.Close();
                 }
                 window.Activated -= HedeWnenStart;
             }

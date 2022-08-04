@@ -5,8 +5,7 @@
     /// </summary>
     public class AppSettings
     {
-        private static AppSettings _instance = null;
-        private bool _hasUnsavedChanges = false;
+        private static AppSettings? _instance;
         private bool _startMinimized = true;
 
         /// <summary>
@@ -26,7 +25,7 @@
         /// Gets or sets a value that determines if the app should start 
         /// minimized to the tray icon.
         /// </summary>
-        public bool StartMinimized 
+        public bool StartMinimized
         {
             get { return _startMinimized; }
             set
@@ -34,7 +33,6 @@
                 if (_startMinimized != value)
                 {
                     _startMinimized = value;
-                    _hasUnsavedChanges = true;
                 }
             }
         }
@@ -54,7 +52,6 @@
         /// </summary>
         public void Reload()
         {
-            _hasUnsavedChanges = false;
         }
 
     }
