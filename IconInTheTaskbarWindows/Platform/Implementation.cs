@@ -22,10 +22,7 @@ namespace IconInTheTaskbar.Platform
             {
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                     return typeof(Win.NotifyIcon);
-                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                    return typeof(Linux.NotifyIcon);
-                else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-                    return typeof(OSX.NotifyIcon);
+                
                 else return null;
             }
             
@@ -34,10 +31,6 @@ namespace IconInTheTaskbar.Platform
             {
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                     return typeof(Win.SystemEventNotifier);
-                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                    return typeof(Linux.SystemEventNotifier);
-                else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-                    return typeof(OSX.SystemEventNotifier);
                 else return null;
             }
 

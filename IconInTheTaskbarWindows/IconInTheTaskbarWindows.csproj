@@ -18,11 +18,7 @@
 		<PackageReference Include="Avalonia" Version="0.10.17" />
 		<!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
 		<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.17" />
-		<PackageReference Include="Eto.Forms" Version="2.7.0" />
-		<PackageReference Include="Eto.Platform.Gtk" Version="2.7.0" />
-		<PackageReference Include="MonoMac.NetStandard" Version="0.0.4" />
 		<PackageReference Include="Serilog" Version="2.11.0" />
 		<PackageReference Include="System.Drawing.Common" Version="6.0.0" />
-		<PackageReference Include="X11" Version="1.0.6" />
 	</ItemGroup>
 </Project>
