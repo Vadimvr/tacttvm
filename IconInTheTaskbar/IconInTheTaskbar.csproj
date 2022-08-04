@@ -6,14 +6,6 @@
 		<Nullable>enable</Nullable>
 		<CodeAnalysisRuleSet>code-analysis.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<None Remove="Assets\IconInTheTaskbar_icon.ico" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Include="Assets\IconInTheTaskbar_icon.ico" />
-	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Avalonia" Version="0.10.17" />
 		<!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
