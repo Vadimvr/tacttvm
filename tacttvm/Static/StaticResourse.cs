@@ -11,9 +11,7 @@ namespace tacttvm.Static
         public static string ApplicationNameInTheTaskbar { get; set; } = "App name";
         public static string ApplicationIconInTheTaskbarOSX { get; set; } = @"resm:tacttvm.Assets.tacttvm_osx_icon.png";
         public static string ApplicationIconInTheTaskbarWin { get; set; } = @"resm:tacttvm.Assets.tacttvm_win_icon.ico";
-
-        // An instance of the icon must be in the IconInTheTaskbar library in the Assets folder, otherwise it will not start on Linux 
-        public static string ApplicationIconInTheTaskbarLin { get; set; } = @"resm:tacttvm.Assets.IconInTheTaskbar_icon.ico";
+        public static string ApplicationIconInTheTaskbarLin { get; set; } = @"resm:tacttvm.Assets.tacttvm_lin_icon.ico";
 
         // address and port for application listening on duplicate launch 
         // if the application is running, then the second instance will not start 

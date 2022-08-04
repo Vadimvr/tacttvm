@@ -11,14 +11,13 @@
 	<ItemGroup>
 		<AvaloniaResource Include="Assets\**" />
 		<AvaloniaResource Include="Styles\**" />
-		<AvaloniaResource Remove="Assets\IconInTheTaskbar_icon.ico" />
+		<AvaloniaResource Remove="Assets\tacttvm_lin_icon.ico" />
 		<AvaloniaResource Remove="Assets\tacttvm_osx_icon.png" />
 		<AvaloniaResource Remove="Assets\tacttvm_win_icon.ico" />
 		<Compile Remove="Assets\AppSettings.cs" />
 		<None Remove=".gitignore" />
-		<None Remove="Assets\IconInTheTaskbar_icon.ico" />
-		<None Remove="Assets\IconInTheTaskbar_icon_normal_256_32_icon.ico" />
 		<None Remove="Assets\tacttvm-Logo.ico" />
+		<None Remove="Assets\tacttvm_lin_icon.ico" />
 		<None Remove="Assets\tacttvm_osx_icon.png" />
 		<None Remove="Assets\tacttvm_win_icon.ico" />
 		<None Remove="C:\Users\rvadi\.nuget\packages\dein.toolbox\1.10.0\contentFiles\any\any\cmd.bat" />
@@ -36,7 +35,7 @@
 	  <Content Include="Assets\tacttvm_win_icon.ico" />
 	</ItemGroup>
 	<ItemGroup>
-	  <EmbeddedResource Include="Assets\IconInTheTaskbar_icon.ico" />
+	  <EmbeddedResource Include="Assets\tacttvm_lin_icon.ico" />
 	  <EmbeddedResource Include="Assets\tacttvm_osx_icon.png" />
 	  <EmbeddedResource Include="Assets\tacttvm_win_icon.ico">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -72,9 +71,6 @@
 	  <ProjectReference Include="..\IconInTheTaskbarLin\IconInTheTaskbarLin.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<AvaloniaResource Update="Assets\IconInTheTaskbar_icon_normal_256_32_icon.ico">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</AvaloniaResource>
 		<AvaloniaResource Update="Styles\TextBlock.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</AvaloniaResource>

@@ -37,7 +37,7 @@ namespace IconInTheTaskbar.Platform.Linux
                 IconCreate.LogInformation?.Invoke(IconPath.Replace("resm:", ""));
                 _tray = new TrayIndicator
                 {
-                    Image = Eto.Drawing.Icon.FromResource(IconPath.Replace("resm:", "")),
+                    Image = Eto.Drawing.Icon.FromResource(IconPath.Replace("resm:", ""),assembly),
                     Menu = ctxMnu,
                     Title = ToolTip
                 };
